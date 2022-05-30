@@ -139,6 +139,7 @@
             <xsd:element name="entity-manager" type="entity_manager" />
             <xsd:element name="resolve-target-entity" type="resolve_target_entity" minOccurs="0" maxOccurs="unbounded" />
             <xsd:group ref="entity-manager-child-config" />
+            <xsd:element name="schema-ignore-class" type="xsd:string" minOccurs="0" maxOccurs="unbounded" />
         </xsd:choice>
 
         <xsd:attribute name="default-entity-manager" type="xsd:string" />

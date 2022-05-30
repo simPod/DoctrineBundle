@@ -277,6 +277,9 @@ Configuration Reference
                 auto_generate_proxy_classes:  false
                 proxy_dir:                    "%kernel.cache_dir%/doctrine/orm/Proxies"
                 proxy_namespace:              Proxies
+                schema_ignore_classes:
+                    - Acme\AppBundle\Entity\Order
+                    - Acme\AppBundle\Entity\PhoneNumber
 
                 entity_managers:
 
@@ -730,6 +733,9 @@ Configuration Reference
                         </doctrine:filter>
 
                     </doctrine:entity-manager>
+
+                    <doctrine:schema-ignore-class>Acme\AppBundle\Entity\Order</doctrine:resolve-target-entity>
+                    <doctrine:schema-ignore-class>Acme\AppBundle\Entity\PhoneNumber</doctrine:resolve-target-entity>
 
                     <!-- example -->
                     <doctrine:resolve-target-entity interface="Acme\InvoiceBundle\Model\InvoiceSubjectInterface">Acme\AppBundle\Entity\Customer</doctrine:resolve-target-entity>

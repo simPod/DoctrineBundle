@@ -932,6 +932,18 @@ abstract class AbstractDoctrineExtensionTest extends TestCase
         $this->assertEquals(['doctrine.event_subscriber' => [[]]], $tags);
     }
 
+    public function testSchemaIgnoreClasses(): void
+    {
+        if (! interface_exists(EntityManagerInterface::class)) {
+            self::markTestSkipped('This test requires ORM');
+        }
+
+        $container = $this->loadContainer('orm_schema_ignore_classes');
+
+        $configDefinition = $container->getDefinition('doctrine.orm.default_configuration');
+        $this->assertDICDefinitionMethodCallOnce($configDefinition, 'setSchemaIgnoreClasses', ['%doctrine.orm.schema_ignore_classes%']);
+    }
+
     public function testAttachEntityListeners(): void
     {
         if (! interface_exists(EntityManagerInterface::class)) {

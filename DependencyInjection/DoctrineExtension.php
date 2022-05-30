@@ -531,7 +531,7 @@ class DoctrineExtension extends AbstractDoctrineExtension
 
         $container->setParameter('doctrine.default_entity_manager', $config['default_entity_manager']);
 
-        $options = ['auto_generate_proxy_classes', 'proxy_dir', 'proxy_namespace'];
+        $options = ['auto_generate_proxy_classes', 'proxy_dir', 'proxy_namespace', 'schema_ignore_classes'];
         foreach ($options as $key) {
             $container->setParameter('doctrine.orm.' . $key, $config[$key]);
         }
@@ -627,6 +627,7 @@ class DoctrineExtension extends AbstractDoctrineExtension
             'setProxyDir' => '%doctrine.orm.proxy_dir%',
             'setProxyNamespace' => '%doctrine.orm.proxy_namespace%',
             'setAutoGenerateProxyClasses' => '%doctrine.orm.auto_generate_proxy_classes%',
+            'setSchemaIgnoreClasses' => '%doctrine.orm.schema_ignore_classes%',
             'setClassMetadataFactoryName' => $entityManager['class_metadata_factory_name'],
             'setDefaultRepositoryClassName' => $entityManager['default_repository_class'],
             'setNamingStrategy' => new Reference($entityManager['naming_strategy']),

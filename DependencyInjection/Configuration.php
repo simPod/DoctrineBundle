@@ -399,6 +399,8 @@ class Configuration implements ConfigurationInterface
                                 'proxy_namespace' => true,
                                 'resolve_target_entities' => true,
                                 'resolve_target_entity' => true,
+                                'schema_ignore_class' => true,
+                                'schema_ignore_classes' => true,
                             ];
                             $entityManager = [];
                             foreach ($v as $key => $value) {
@@ -416,6 +418,7 @@ class Configuration implements ConfigurationInterface
                             return $v;
                         })
                     ->end()
+                    ->fixXmlConfig('schema_ignore_class', 'schema_ignore_classes')
                     ->children()
                         ->scalarNode('default_entity_manager')->end()
                         ->scalarNode('auto_generate_proxy_classes')->defaultValue(false)
@@ -451,6 +454,9 @@ class Configuration implements ConfigurationInterface
                         ->end()
                         ->scalarNode('proxy_dir')->defaultValue('%kernel.cache_dir%/doctrine/orm/Proxies')->end()
                         ->scalarNode('proxy_namespace')->defaultValue('Proxies')->end()
+                        ->arrayNode('schema_ignore_classes')
+                            ->prototype('scalar')->end()
+                        ->end()
                     ->end()
                     ->fixXmlConfig('entity_manager')
                     ->append($this->getOrmEntityManagersNode())

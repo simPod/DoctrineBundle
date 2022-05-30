@@ -1,0 +1,8 @@
+doctrine:
+    dbal:
+        default_connection: default
+
+    orm:
+        schema_ignore_classes:
+            - Class\A
+            - Class\B
